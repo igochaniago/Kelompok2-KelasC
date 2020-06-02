@@ -129,3 +129,81 @@ def inputpembukuan():
             None
         
         writer.writerow(dictbuku)
+
+        #====================================
+#DEFINISI UNTUK OPSI "CEK PEMBUKUAN"
+#====================================
+def cekpembukuan():
+    try:
+        bulanbuku = int(input("Bulan Pembukuan (1-12): "))
+        tahunbuku = int(input("Tahun Pembukuan (yyyy): "))
+        penanggalanfile = datetime.datetime(tahunbuku, bulanbuku, 1) 
+        namafile = f'Pembukuan {penanggalanfile.strftime("%Y %m")}.csv'
+    
+        with open (namafile) as filecsv:
+            readCSV = csv.reader (filecsv,delimiter = ',')
+            line_count = 0
+            header = next (readCSV)
+            sortir = sorted (readCSV, key = operator.itemgetter (0))
+            print (header)
+            totalsaldo = 0
+            totaldebit = 0
+            totalkredit = 0
+            
+            if header != None:
+                for row in sortir:
+                    debit, kredit = float(row[2]), float(row[3])
+                    totalpembukuan = debit - kredit
+                
+                    #global totalsaldo
+                    totaldebit += debit
+                    totalkredit += kredit
+                    totalsaldo += totalpembukuan 
+                
+                    line_count += 1
+                    jmldata = line_count
+                    print (row)
+                    
+        if totalkredit > 0.8*totaldebit:
+            print ("")
+            print ("Jumlah Data Pembukuan dalam sebulan: ", jmldata)
+            print ("Jumlah PEMASUKAN    : ", totaldebit)
+            print ("Jumlah PENGELUARAN  : ", totalkredit)
+            print ("Total SALDO saat ini: ", totalsaldo)
+            print ("Kesehatan Finansial : BURUK")
+                        
+        elif totalkredit <= 0.8*totaldebit:
+            print ("")
+            print ("Jumlah Data Pembukuan dalam sebulan: ", jmldata)
+            print ("Jumlah PEMASUKAN    : ", totaldebit)
+            print ("Jumlah PENGELUARAN  : ", totalkredit)
+            print ("Total SALDO saat ini: ", totalsaldo)
+            print ("Kesehatan Finansial : BAIK")
+        filecsv.close()  
+        kembalimenuawal()
+        
+    except FileNotFoundError:
+        print ("")
+        print ("==============================================================================")
+        print ("                      PROGRAM PEMBUKUAN FINANSIAL MANDIRI                     ")
+        print ("==============================================================================")
+        print ("")
+        print ("                         Belum ada data yang dimasukkan                       ")
+        print ("                                      ATAU                                    ")
+        print ("                            Tidak ada File Pembukuan                          ")         
+        print ("")
+        print ("Apakah ingin mengulangi CEK PEMBUKUAN?")
+        print ("(1) YA")
+        print ("(2) TIDAK")
+        
+        lanjut = input ("> ")
+        if lanjut == ("1"):
+            system ("cls")
+            cekpembukuan()
+        
+        else:
+            system ("cls")
+            print ("")
+            print ("KEMBALI KE MENU AWAL")
+            print ("")
+            
