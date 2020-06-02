@@ -31,20 +31,20 @@
 #
 #===================================================================
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#Import os untuk keperluan file
+import os
+#Import csv untuk modifikasi csv
+import csv
+#Import math untuk fungsi matematika
+import math
+import operator
+#Import Sistem Penanggalan
+import datetime
+import time
+#Import getpass untuk keamanaan kata sandi
+import getpass
+#Import system untuk ("cls") atau terminal clear
+from os import system
 
 #======================================
 #DEFINISI UNTUK "INPUT PEMBUKUAN"
@@ -206,6 +206,23 @@ def cekpembukuan():
             print ("")
             print ("KEMBALI KE MENU AWAL")
             print ("")
+
+#DEFINISI UNTUK PENGULANGAN INTERFACE
+def kembalimenuawal():        
+        print ("")
+        print ("Tekan (1) lalu ENTER untuk Kembali ke MENU AWAL")
+        
+        lanjut = input ("> ")
+        if lanjut == ("1"):
+            system ("cls")
+            print ("")
+            print ("KEMBALI KE MENU AWAL")
+            print ("")
+        
+        else:
+            system ("cls")
+            None
+            
             
 #======
 #Login
