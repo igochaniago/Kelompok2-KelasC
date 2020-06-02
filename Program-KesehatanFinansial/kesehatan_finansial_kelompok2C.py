@@ -109,3 +109,23 @@ def inputpembukuan():
         kredit = (int(input("> ")))
         debit = 0
 
+ totalbuku = debit - kredit
+    
+    csvheader = ['Tanggal', 'Keterangan Pembukuan', 'Debit', 'Kredit', 'Total']
+
+    #Membuka file csv dalam mode append
+    with open(namafile, 'a', newline='\n') as filecsv:
+
+        #dictnilai adalah dictionary digunakan untuk writerow.
+        #Mengubah data menjadi dictionary untuk dimasukkan per row
+        dictbuku = {'Tanggal': penanggalan.strftime("%d/%m/%Y"), 'Keterangan Pembukuan': ketbuku, 'Debit': debit, 'Kredit': kredit, 'Total': totalbuku}
+
+        writer = csv.DictWriter(filecsv, fieldnames = csvheader)
+
+        #Jika file tidak ada, maka auto membuat file dan menambah csvheader di dalamnya
+        if os.stat(namafile).st_size == 0:
+            writer.writeheader()
+        else:
+            None
+        
+        writer.writerow(dictbuku)
