@@ -242,3 +242,66 @@ def login():
     print ("")
     time.sleep(1) #agar saat dijalankan langsung tanpa melalui prompt tidak langsung tertutup, sehingga menampilkan output terlebih dahulu
     return False
+
+#===============================
+#TAMPILAN MUKA AWAL (INTERFACE)
+#===============================
+def menu():
+    system ("cls")
+    while True:
+        print ("")
+        print ("==============================================================================")
+        print ("                      PROGRAM PEMBUKUAN FINANSIAL MANDIRI                     ")
+        print ("==============================================================================")
+        print ("         Program ini digunakan untuk pembukuan finansial secara mandiri       ")
+        print ("")
+        print ("                     Dalam program ini, kita bisa memonitor:                  ")
+        print ("                      +Pemasukan Bulanan                                      ")
+        print ("                      +Pengeluaran Bulanan                                    ")
+        print ("                      +Kesehatan Finansial Bulanan                            ")
+        print ("")
+        print ("           Jika terjadi ERROR, klik ctrl + c lalu mulai ulang program         ")
+        print ("")
+        print ("==============================================================================")
+        print ("                                   MENU AWAL                                  ")
+        print ("==============================================================================")
+        print ("")
+        print ("                        Klik (1) untuk INPUT data PEMBUKUAN                   ")
+        print ("                        Klik (2) untuk CEK data PEMBUKUAN                     ")
+        print ("                        Klik (3) untuk KELUAR dari PROGRAM                    ")
+        print ("")
+        
+        mulai = input("> ")
+        if mulai == ("1"):
+            system ("cls")
+            inputpembukuan()
+        
+        elif mulai ==("2"):
+            system ("cls")
+            cekpembukuan()
+            
+        elif mulai == ("3"):
+            system ("cls")
+            print ("")
+            print ("PROGRAM TERHENTI!")
+            print ("")
+            time.sleep(1)
+            break
+            
+        else:
+            system ("cls")
+            print ("")
+            print ("Input SALAH!")
+            print ("PROGRAM TERHENTI!")
+            print ("")
+            break
+
+def main():
+    log = login()
+    if log == True:
+        menu()
+        
+#================================
+#MENJALANKAN KESELURUHAN PROGRAM
+#================================
+main()
