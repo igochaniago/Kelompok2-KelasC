@@ -30,3 +30,82 @@
 #Terimakasih
 #
 #===================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#======================================
+#DEFINISI UNTUK "INPUT PEMBUKUAN"
+#======================================
+def inputpembukuan():
+    bulanbuku = int(input("Bulan Pembukuan (1-12): "))
+    tahunbuku = int(input("Tahun Pembukuan (yyyy): "))
+    penanggalanfile = datetime.datetime(tahunbuku, bulanbuku, 1) 
+    namafile = f'Pembukuan {penanggalanfile.strftime("%Y %m")}.csv'
+    
+    tanggalbuku = int(input("Masukkan TANGGAL (1-31): "))
+    penanggalan = datetime.datetime(tahunbuku, bulanbuku, tanggalbuku)
+    
+    #Menu untuk input Keterangan Pembukuan
+    system ("cls")
+    print ("==============================================================================")
+    print ("                      PROGRAM PEMBUKUAN FINANSIAL MANDIRI                     ")
+    print ("==============================================================================")
+    print ("                             KETERANGAN PEMBUKUAN                             ")
+    print ("")
+    print ("")
+    print ("          Tahap ini adalah untuk menuliskan keperluan atau keterangan         ") 
+    print ("               yang berkaitan dengan PEMASUKAN atau PENGELUARAN               ")
+    print ("")
+    print ("Masukkan Keterangan Pembukuan")
+    ketbuku = input("> ")
+    
+    #Menu untuk memilih apakah mendata Pemasukan atau Pengeluaran
+    system ("cls")
+    print ("==============================================================================")
+    print ("                      PROGRAM PEMBUKUAN FINANSIAL MANDIRI                     ")
+    print ("==============================================================================")
+    print ("                           PEMASUKAN atau PENGELUARAN                         ")
+    print ("")
+    print ("")
+    print ("                                 Pilih Pembukuan                              ")
+    print ("                          Klik (1) untuk data PEMASUKAN                       ")
+    print ("                          Klik (2) untuk data PENGELUARAN                     ")
+    print ("")
+    pilihbuku = input("> ")
+    if pilihbuku == ("1"):
+        system ("cls")
+        print ("==============================================================================")
+        print ("                      PROGRAM PEMBUKUAN FINANSIAL MANDIRI                     ")
+        print ("==============================================================================")
+        print ("                                  PEMASUKAN                                   ")
+        print ("")
+        print ("")
+        print ("Input nominal PEMASUKAN")
+        kredit = 0
+        debit = int(input("> "))
+    
+    elif pilihbuku == ("2"):
+        system ("cls")
+        print ("==============================================================================")
+        print ("                      PROGRAM PEMBUKUAN FINANSIAL MANDIRI                     ")
+        print ("==============================================================================")
+        print ("                                 PENGELUARAN                                  ")
+        print ("")
+        print ("")
+        print ("Input nominal PENGELUARAN")
+        kredit = (int(input("> ")))
+        debit = 0
+
