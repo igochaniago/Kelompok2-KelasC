@@ -207,3 +207,38 @@ def cekpembukuan():
             print ("KEMBALI KE MENU AWAL")
             print ("")
             
+#======
+#Login
+#======
+def login():    
+    system ("cls")
+    print ("")
+    print ("==============================================================================")
+    print ("                      PROGRAM PEMBUKUAN FINANSIAL MANDIRI                     ")
+    print ("==============================================================================")
+    print ("")
+    print ("NB: Saat memasukkan password, huruf yang diketik memang tidak terlihat")
+    print ("")
+    username = input("Masukkan Username: ")
+    password = getpass.getpass("Masukkan Password: ")
+    filepass = open("financepass.txt", "r")
+    for line in filepass.readlines():
+        us, pw = line.strip().split(",")
+        if (username == us) and (password == pw):
+            print ("")
+            print ("Login Berhasil")
+            time.sleep(1) 
+            return True
+    
+    system ("cls")
+    print ("")
+    print ("==============================================================================")
+    print ("                      PROGRAM PEMBUKUAN FINANSIAL MANDIRI                     ")
+    print ("==============================================================================")
+    print ("")
+    print ("                             Username atau Password                           ")
+    print ("                                      SALAH!                                  ")
+    print ("                               PROGRAM TERHENTI!                              ")    
+    print ("")
+    time.sleep(1) #agar saat dijalankan langsung tanpa melalui prompt tidak langsung tertutup, sehingga menampilkan output terlebih dahulu
+    return False
