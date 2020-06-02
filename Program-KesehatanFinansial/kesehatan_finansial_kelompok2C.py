@@ -109,7 +109,7 @@ def inputpembukuan():
         kredit = (int(input("> ")))
         debit = 0
 
- totalbuku = debit - kredit
+    totalbuku = debit - kredit
     
     csvheader = ['Tanggal', 'Keterangan Pembukuan', 'Debit', 'Kredit', 'Total']
 
@@ -130,7 +130,7 @@ def inputpembukuan():
         
         writer.writerow(dictbuku)
 
-        #====================================
+#====================================
 #DEFINISI UNTUK OPSI "CEK PEMBUKUAN"
 #====================================
 def cekpembukuan():
