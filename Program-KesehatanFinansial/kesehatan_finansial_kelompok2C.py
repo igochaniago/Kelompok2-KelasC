@@ -1,5 +1,5 @@
 #===================================================================
-#KesehatanFinansial v1.0
+#KesehatanFinansial v1.1
 #===================================================================
 #
 #Dibuat oleh Kelompok 2 Kelas C
@@ -13,9 +13,8 @@
 #
 #Mahasiswa S1 Teknik Industri UNS
 #
-#Versi ini merupakan pengembangan awal
-#
 #List Fitur:
+#   v1.0
 #   +Penggunaan CSV module untuk menyimpan data input di file .csv
 #   +Penggunaan Datetime module sebagai sistem penanggalan
 #   +Penggunaan Time module agar mempermudah saat dijalankan langsung dari klik programnya
@@ -23,14 +22,14 @@
 #   +Penggunaan Getpass module untuk proses Login yang lebih aman
 #   +Penggunaan system("cls") yang menghasilkan interface pada prompt lebih nyaman
 #   +Dapat dijalankan langsung dari file .py nya tanpa perlu starting prompt terlebih dahulu 
-#    dan program tidak autobreak sehingga memudahkan user apabila menggunakan 
-#    tanpa melalui starting prompt
+#    dan program tidak autobreak sehingga memudahkan user apabila menggunakan tanpa melalui starting prompt
+#   v1.1
+#   +Ada opsi untuk melihat file bulanan yang dikelola oleh program
 #
 #Saran dan Masukan untuk pengembangan sangat diperlukan
 #Terimakasih
 #
 #===================================================================
-
 #Import os untuk keperluan file
 import os
 #Import csv untuk modifikasi csv
@@ -155,7 +154,6 @@ def cekpembukuan():
                     debit, kredit = float(row[2]), float(row[3])
                     totalpembukuan = debit - kredit
                 
-                    #global totalsaldo
                     totaldebit += debit
                     totalkredit += kredit
                     totalsaldo += totalpembukuan 
@@ -206,6 +204,27 @@ def cekpembukuan():
             print ("")
             print ("KEMBALI KE MENU AWAL")
             print ("")
+
+#======================================
+#DEFINISI UNTUK CEK FILE YANG DIKELOLA
+#======================================
+def filedir():
+    filelist = os.listdir()
+    print ("")
+    print ("==============================================================================")
+    print ("                      PROGRAM PEMBUKUAN FINANSIAL MANDIRI                     ")
+    print ("==============================================================================")
+    print ("")
+    print ("          Berikut ini adalah File Bulanan yang terdeteksi oleh Program        ")
+    print ("             Format Penamaan File adalah: Pembukuan (Tahun) (Bulan)           ")
+    print ("")
+    print ("Daftar File:")
+    for daftarfile in filelist:
+        if daftarfile.endswith(".csv"):
+            print(os.path.join(daftarfile))
+            print ("")
+    kembalimenuawal()   
+  
 
 #DEFINISI UNTUK PENGULANGAN INTERFACE
 def kembalimenuawal():        
@@ -283,9 +302,10 @@ def menu():
         print ("                                   MENU AWAL                                  ")
         print ("==============================================================================")
         print ("")
-        print ("                        Klik (1) untuk INPUT data PEMBUKUAN                   ")
-        print ("                        Klik (2) untuk CEK data PEMBUKUAN                     ")
-        print ("                        Klik (3) untuk KELUAR dari PROGRAM                    ")
+        print ("                     Klik (1) untuk INPUT data PEMBUKUAN                      ")
+        print ("                     Klik (2) untuk CEK data PEMBUKUAN                        ")
+        print ("                     Klik (3) untuk CEK file bulan yang SUDAH dimasukkan      ")
+        print ("                     Klik (4) untuk KELUAR dari PROGRAM                       ")
         print ("")
         
         mulai = input("> ")
@@ -297,7 +317,11 @@ def menu():
             system ("cls")
             cekpembukuan()
             
-        elif mulai == ("3"):
+        elif mulai ==("3"):
+            system ("cls")
+            filedir()   
+            
+        elif mulai == ("4"):
             system ("cls")
             print ("")
             print ("PROGRAM TERHENTI!")
