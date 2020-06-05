@@ -1,7 +1,7 @@
 # Kelompok2-KelasC
 Ini adalah Repository untuk Tugas Matkul Programa Komputer 2020
 <pre>
-Folder "Program-Kesehatan Finansial"
+Folder "Program-KesehatanFinansial"
   Berisi Program serta segala file penunjang jalannya Program
 
 Folder "Referensi-Program"
