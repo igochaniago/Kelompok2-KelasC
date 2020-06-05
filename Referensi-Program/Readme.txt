@@ -13,9 +13,9 @@ Dalam menyusun Program ini, bahan riset kami berasal dari website:
 Referensi Program yang dicantumkan
 1. Penggunaan fitur Login
 	Tercantum dalam	: Definisi Login.png
-					          Definisi Login(2).png
-	Berasal dari	  : https://stackoverflow.com/questions/28483113/simple-login-function-in-python
-	Keterangan		  : Dalam penggunaan referensi ini, kami memodifikasi bagian
+			  Definisi Login(2).png
+	Berasal dari	: https://stackoverflow.com/questions/28483113/simple-login-function-in-python
+	Keterangan      : Dalam penggunaan referensi ini, kami memodifikasi bagian
                     +us, pw = line.strip().split("|") menjadi us, pw = line.strip().split(",")
                       Hal ini dilakukan untuk mempermudah dan menyederhanakan dalam karakter yang memisahkan us dan pw 
                       dari (|)garis menjadi menggunakan (,)koma
@@ -29,8 +29,8 @@ Referensi Program yang dicantumkan
 
 2. Penggunaan module getpass
 	Tercantum dalam	: Penggunaan getpass.png
-	Berasal dari	  : https://www.geeksforgeeks.org/getpass-and-getuser-in-python-password-without-echo/
-	Keterangan		  : Dalam penggunaan referensi ini
+	Berasal dari	: https://www.geeksforgeeks.org/getpass-and-getuser-in-python-password-without-echo/
+	Keterangan      : Dalam penggunaan referensi ini
                     +Hanya menggunakan bagian getpass.getpass saja
                       Dalam password = getpass.getpass("Masukkan Password: ") di def login() digunakan getpass.getpass
                       untuk menggunakan module getpass yang sebelumnya sudah diimport
@@ -39,8 +39,8 @@ Referensi Program yang dicantumkan
 
 3. Penggunaan listdir()
 	Tercantum dalam : Penggunaan listdir() untuk listing file yang dikelola.png
-	Berasal dari 	  : https://stackoverflow.com/questions/3964681/find-all-files-in-a-directory-with-extension-txt-in-python
-	Keterangan		  : Dalam penggunaan referensi ini, kami memodifikasi bagian
+	Berasal dari 	: https://stackoverflow.com/questions/3964681/find-all-files-in-a-directory-with-extension-txt-in-python
+	Keterangan      : Dalam penggunaan referensi ini, kami memodifikasi bagian
                     +for file in os.listdir("/mydir") menjadi for daftarfile in filelist
                       Hal ini dilakukan karena pada line sebelumnya sudah terdapat definisi filelist = os.listdir()
 
@@ -52,8 +52,8 @@ Referensi Program yang dicantumkan
 
 4. Penggunaan sorted() function
 	Tercantum dalam	: Penggunaan sort pada csv.png
-	Berasal dari	  : https://stackoverflow.com/questions/2100353/sort-csv-by-column
-	Keterangan		  : Dalam penggunaan referensi ini, kami memodifikasi bagian
+	Berasal dari	: https://stackoverflow.com/questions/2100353/sort-csv-by-column
+	Keterangan      : Dalam penggunaan referensi ini, kami memodifikasi bagian
                     +Menambahkan header = next (readCSV)
                       Hal ini dilakukan agar data yang di sortir tidak ikut menyortir kolom header
 
@@ -63,8 +63,8 @@ Referensi Program yang dicantumkan
 
 5. Penggunaan time.sleep 
 	Tercantum dalam : Penggunaan time sleep.png
-	Berasal dari	  : https://www.pythoncentral.io/pythons-time-sleep-pause-wait-sleep-stop-your-code/
-	Keterangan		  : Dalam penggunaan referensi ini
+	Berasal dari	: https://www.pythoncentral.io/pythons-time-sleep-pause-wait-sleep-stop-your-code/
+	Keterangan      : Dalam penggunaan referensi ini
                     +Hanya menggunakan bagian time.sleep()
                       Hal ini dilakukan agar saat menjalankan program langsung dari kesehatan_finansial_kelompok2C.py tanpa 
                       melalui prompt terdapat jeda agar muncul keterangan hasil (output) yang terjadi
