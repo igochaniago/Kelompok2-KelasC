@@ -1,5 +1,5 @@
 #===================================================================
-#KesehatanFinansial v1.1
+#KesehatanFinansial v1.2
 #===================================================================
 #
 #Dibuat oleh Kelompok 2 Kelas C
@@ -25,6 +25,8 @@
 #    dan program tidak autobreak sehingga memudahkan user apabila menggunakan tanpa melalui starting prompt
 #   v1.1
 #   +Ada opsi untuk melihat file bulanan yang dikelola oleh program
+#   v1.2
+#   +Bug Fixed: ValueError pada saat salah input
 #
 #Saran dan Masukan untuk pengembangan sangat diperlukan
 #Terimakasih
@@ -49,86 +51,112 @@ from os import system
 #DEFINISI UNTUK "INPUT PEMBUKUAN"
 #======================================
 def inputpembukuan():
-    bulanbuku = int(input("Bulan Pembukuan (1-12): "))
-    tahunbuku = int(input("Tahun Pembukuan (yyyy): "))
-    penanggalanfile = datetime.datetime(tahunbuku, bulanbuku, 1) 
-    namafile = f'Pembukuan {penanggalanfile.strftime("%Y %m")}.csv'
-    
-    tanggalbuku = int(input("Masukkan TANGGAL (1-31): "))
-    penanggalan = datetime.datetime(tahunbuku, bulanbuku, tanggalbuku)
-    
-    #Menu untuk input Keterangan Pembukuan
-    system ("cls")
-    print ("==============================================================================")
-    print ("                      PROGRAM PEMBUKUAN FINANSIAL MANDIRI                     ")
-    print ("==============================================================================")
-    print ("                             KETERANGAN PEMBUKUAN                             ")
-    print ("")
-    print ("")
-    print ("          Tahap ini adalah untuk menuliskan keperluan atau keterangan         ") 
-    print ("               yang berkaitan dengan PEMASUKAN atau PENGELUARAN               ")
-    print ("")
-    print ("Masukkan Keterangan Pembukuan")
-    ketbuku = input("> ")
-    
-    #Menu untuk memilih apakah mendata Pemasukan atau Pengeluaran
-    system ("cls")
-    print ("==============================================================================")
-    print ("                      PROGRAM PEMBUKUAN FINANSIAL MANDIRI                     ")
-    print ("==============================================================================")
-    print ("                           PEMASUKAN atau PENGELUARAN                         ")
-    print ("")
-    print ("")
-    print ("                                 Pilih Pembukuan                              ")
-    print ("                          Klik (1) untuk data PEMASUKAN                       ")
-    print ("                          Klik (2) untuk data PENGELUARAN                     ")
-    print ("")
-    pilihbuku = input("> ")
-    if pilihbuku == ("1"):
+    try:
+        bulanbuku = int(input("Bulan Pembukuan (1-12): "))
+        tahunbuku = int(input("Tahun Pembukuan (yyyy): "))
+        penanggalanfile = datetime.datetime(tahunbuku, bulanbuku, 1) 
+        namafile = f'Pembukuan {penanggalanfile.strftime("%Y %m")}.csv'
+
+        tanggalbuku = int(input("Masukkan TANGGAL (1-31): "))
+        penanggalan = datetime.datetime(tahunbuku, bulanbuku, tanggalbuku)
+
+        #Menu untuk input Keterangan Pembukuan
         system ("cls")
         print ("==============================================================================")
         print ("                      PROGRAM PEMBUKUAN FINANSIAL MANDIRI                     ")
         print ("==============================================================================")
-        print ("                                  PEMASUKAN                                   ")
+        print ("                             KETERANGAN PEMBUKUAN                             ")
         print ("")
         print ("")
-        print ("Input nominal PEMASUKAN")
-        kredit = 0
-        debit = int(input("> "))
-    
-    elif pilihbuku == ("2"):
+        print ("          Tahap ini adalah untuk menuliskan keperluan atau keterangan         ") 
+        print ("               yang berkaitan dengan PEMASUKAN atau PENGELUARAN               ")
+        print ("")
+        print ("Masukkan Keterangan Pembukuan")
+        ketbuku = input("> ")
+
+        #Menu untuk memilih apakah mendata Pemasukan atau Pengeluaran
         system ("cls")
         print ("==============================================================================")
         print ("                      PROGRAM PEMBUKUAN FINANSIAL MANDIRI                     ")
         print ("==============================================================================")
-        print ("                                 PENGELUARAN                                  ")
+        print ("                           PEMASUKAN atau PENGELUARAN                         ")
         print ("")
         print ("")
-        print ("Input nominal PENGELUARAN")
-        kredit = (int(input("> ")))
-        debit = 0
+        print ("                                 Pilih Pembukuan                              ")
+        print ("                          Klik (1) untuk data PEMASUKAN                       ")
+        print ("                          Klik (2) untuk data PENGELUARAN                     ")
+        print ("")
+        pilihbuku = input("> ")
+        if pilihbuku == ("1"):
+            system ("cls")
+            print ("==============================================================================")
+            print ("                      PROGRAM PEMBUKUAN FINANSIAL MANDIRI                     ")
+            print ("==============================================================================")
+            print ("                                  PEMASUKAN                                   ")
+            print ("")
+            print ("")
+            print ("Input nominal PEMASUKAN")
+            kredit = 0
+            debit = int(input("> "))
 
-    totalbuku = debit - kredit
-    
-    csvheader = ['Tanggal', 'Keterangan Pembukuan', 'Debit', 'Kredit', 'Total']
+        elif pilihbuku == ("2"):
+            system ("cls")
+            print ("==============================================================================")
+            print ("                      PROGRAM PEMBUKUAN FINANSIAL MANDIRI                     ")
+            print ("==============================================================================")
+            print ("                                 PENGELUARAN                                  ")
+            print ("")
+            print ("")
+            print ("Input nominal PENGELUARAN")
+            kredit = (int(input("> ")))
+            debit = 0
 
-    #Membuka file csv dalam mode append
-    with open(namafile, 'a', newline='\n') as filecsv:
+        totalbuku = debit - kredit
 
-        #dictnilai adalah dictionary digunakan untuk writerow.
-        #Mengubah data menjadi dictionary untuk dimasukkan per row
-        dictbuku = {'Tanggal': penanggalan.strftime("%d/%m/%Y"), 'Keterangan Pembukuan': ketbuku, 'Debit': debit, 'Kredit': kredit, 'Total': totalbuku}
+        csvheader = ['Tanggal', 'Keterangan Pembukuan', 'Debit', 'Kredit', 'Total']
 
-        writer = csv.DictWriter(filecsv, fieldnames = csvheader)
+        #Membuka file csv dalam mode append
+        with open(namafile, 'a', newline='\n') as filecsv:
 
-        #Jika file tidak ada, maka auto membuat file dan menambah csvheader di dalamnya
-        if os.stat(namafile).st_size == 0:
-            writer.writeheader()
-        else:
-            None
+            #dictnilai adalah dictionary digunakan untuk writerow.
+            #Mengubah data menjadi dictionary untuk dimasukkan per row
+            dictbuku = {'Tanggal': penanggalan.strftime("%d/%m/%Y"), 'Keterangan Pembukuan': ketbuku, 'Debit': debit, 'Kredit': kredit, 'Total': totalbuku}
+
+            writer = csv.DictWriter(filecsv, fieldnames = csvheader)
+
+            #Jika file tidak ada, maka auto membuat file dan menambah csvheader di dalamnya
+            if os.stat(namafile).st_size == 0:
+                writer.writeheader()
+            else:
+                None
+
+            writer.writerow(dictbuku)
+            
+    except ValueError:
+        print ("")
+        print ("==============================================================================")
+        print ("                      PROGRAM PEMBUKUAN FINANSIAL MANDIRI                     ")
+        print ("==============================================================================")
+        print ("")
+        print ("                          Input yang dimasukkan SALAH                         ")
+        print ("")
+        print ("                   NOTE: Masukkan Nominal Uang dengan ANGKA                   ") 
+        print ("                   NOTE: Masukkan Bulan dan Tahun dengan ANGKA                ")        
+        print ("")
+        print ("Apakah ingin mengulangi INPUT PEMBUKUAN?")
+        print ("(1) YA")
+        print ("(2) TIDAK")
         
-        writer.writerow(dictbuku)
-
+        lanjut = input ("> ")
+        if lanjut == ("1"):
+            system ("cls")
+            inputpembukuan()
+        
+        else:
+            system ("cls")
+            print ("")
+            print ("KEMBALI KE MENU AWAL")
+            print ("")   
 #====================================
 #DEFINISI UNTUK OPSI "CEK PEMBUKUAN"
 #====================================
@@ -204,7 +232,31 @@ def cekpembukuan():
             print ("")
             print ("KEMBALI KE MENU AWAL")
             print ("")
-
+            
+    except ValueError:
+        print ("")
+        print ("==============================================================================")
+        print ("                      PROGRAM PEMBUKUAN FINANSIAL MANDIRI                     ")
+        print ("==============================================================================")
+        print ("")
+        print ("                          Input yang dimasukkan SALAH                         ")
+        print ("")
+        print ("                   NOTE: Masukkan Bulan dan Tahun dengan ANGKA                ")         
+        print ("")
+        print ("Apakah ingin mengulangi CEK PEMBUKUAN?")
+        print ("(1) YA")
+        print ("(2) TIDAK")
+        
+        lanjut = input ("> ")
+        if lanjut == ("1"):
+            system ("cls")
+            cekpembukuan()
+        
+        else:
+            system ("cls")
+            print ("")
+            print ("KEMBALI KE MENU AWAL")
+            print ("")
 #======================================
 #DEFINISI UNTUK CEK FILE YANG DIKELOLA
 #======================================
@@ -241,8 +293,7 @@ def kembalimenuawal():
         else:
             system ("cls")
             None
-            
-            
+                       
 #======
 #Login
 #======
@@ -278,6 +329,7 @@ def login():
     print ("")
     time.sleep(1) #agar saat dijalankan langsung tanpa melalui prompt tidak langsung tertutup, sehingga menampilkan output terlebih dahulu
     return False
+
 
 #===============================
 #TAMPILAN MUKA AWAL (INTERFACE)
@@ -335,6 +387,7 @@ def menu():
             print ("Input SALAH!")
             print ("PROGRAM TERHENTI!")
             print ("")
+            time.sleep(1)
             break
 
 def main():
