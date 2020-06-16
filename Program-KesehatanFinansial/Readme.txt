@@ -29,6 +29,9 @@ LIST FITUR:
    
    v1.1
 	+Ada opsi untuk melihat file bulanan yang dikelola oleh program
+	
+   v1.2
+        +Bug Fixed: ValueError pada saat salah input
 
 SYARAT JALANNYA PROGRAM(Requirements):
 	+Terdapat python serta environmentnya terinstall di PC
