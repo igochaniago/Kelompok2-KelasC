@@ -98,7 +98,9 @@ def inputpembukuan():
             print ("Input nominal PEMASUKAN")
             kredit = 0
             debit = int(input("> "))
-
+            print ("")
+            print ("INPUT BERHASIL")
+            
         elif pilihbuku == ("2"):
             system ("cls")
             print ("==============================================================================")
@@ -110,7 +112,9 @@ def inputpembukuan():
             print ("Input nominal PENGELUARAN")
             kredit = (int(input("> ")))
             debit = 0
-
+            print ("")
+            print ("INPUT BERHASIL")
+            
         totalbuku = debit - kredit
 
         csvheader = ['Tanggal', 'Keterangan Pembukuan', 'Debit', 'Kredit', 'Total']
